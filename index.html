@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Test for string-extender.js</title>
+    <script type="text/javascript" src="js/string-extender.js"></script>
+    <script type="text/javascript" src="js/base64.js"></script>
+</head>
+<body>
+<p>
+    This script depend on js-base64 script (<a href="https://github.com/dankogai/js-base64" target="_blank">https://github.com/dankogai/js-base64</a>).
+</p>
+<div>
+    Original text:<br/>
+    <textarea rows="10" cols="40" name="original">árvíztűrő tükörfúrógép de jó is</textarea>
+</div>
+<div>
+    Extended text:<br/>
+    <textarea rows="10" cols="40" name="extended"></textarea>
+</div>
+<button onclick="extend();">Extend</button>
+
+<p>Usage:</p>
+<pre>
+    &lt;script type="text/javascript" src="js/string-extender.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="js/base64.js"&gt;&lt;/script&gt;
+
+    ...
+
+    /**
+     * Make an extended string from original text
+     */
+    function extend(){
+        var original = document.getElementsByName("original")[0].value;
+        var extended = StringExtender.extend(original);
+        document.getElementsByName("extended")[0].value = extended;
+    }
+</pre>
+
+<script>
+    /**
+     * Make an extended string from original text
+     */
+    function extend(){
+        var original = document.getElementsByName("original")[0].value;
+        var extended = StringExtender.extend(original);
+        document.getElementsByName("extended")[0].value = extended;
+    }
+</script>
+</body>
+</html>
