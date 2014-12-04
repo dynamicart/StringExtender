@@ -6,7 +6,7 @@
  *
  */
 var StringExtender = {
-    _debug: false,
+    _debug: true,
     _original: '',
     _extended: '',
     _cmdTable: {
@@ -43,23 +43,28 @@ var StringExtender = {
             var cmd = this._original.charCodeAt(i).toString().slice(-1);
             this._commands[Object.keys(this._commands).length] = 'm'+cmd;
         }
+        this.log(Object.keys(this._commands).length+" possible step left");
     },
     extend: function(original){
         this._original = Base64.encode(original);
         this._commands = {};
-        this.log("Eredeti szöveg: "+original);
+        this.log("original text: "+original);
         var extendedText = this._original;
 
         this.buildCommands();
 
+        var steps = 0;
         for(var i = 0; i < Object.keys(this._commands).length; i++){
             if (this._commands[i] === undefined){continue;}
             var fn = this._cmdTable[this._commands[i]];
             if (typeof(fn) === 'function'){
                 extendedText = fn(extendedText, this);
                 this.log(extendedText);
+                steps++;
             }
         }
+
+        this.log(steps+" step done");
 
         this._extended = extendedText;
         return extendedText;
